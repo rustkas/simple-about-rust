@@ -88,4 +88,4 @@ fn main() {
 }
 
 ```
-[Run in Rust Playground[(https://play.rust-lang.org/?gist=d5688a5c9cf58205dd405e54628e012a&version=stable&mode=debug&edition=2015)
+[Run in Rust Playground(https://play.rust-lang.org/?gist=d5688a5c9cf58205dd405e54628e012a&version=stable&mode=debug&edition=2015)
