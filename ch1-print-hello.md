@@ -272,5 +272,6 @@ fn main() {
  ⚙\t⚙\t⚙\n
  \tБулевы
  ");
-}```
+}
+```
 [Run in Rust Playground](https://play.rust-lang.org/?gist=131852391d9b5ea6e52a4ab07bf0d28c&version=stable&mode=debug&edition=2015).
