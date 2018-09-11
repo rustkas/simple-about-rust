@@ -260,7 +260,7 @@ O❤O да, думаю, то что надо.
 ```
 [Run in Rust Playground](https://play.rust-lang.org/?gist=10f6ca4e1d305d260ffc62907d2071c9&version=stable&mode=debug&edition=2015).
 
-Или инфорграфику:
+Или инфографику:
 ```rust
 fn main() {
  print!("
