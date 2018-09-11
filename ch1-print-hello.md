@@ -55,37 +55,30 @@ fn main() {
 fn println() {
     println!("println");
 }
-fn printlN() {
-    println!("printlN");
+fn PrintlN() {
+    println!("PrintlN");
 }
-fn printLn() {
-    println!("printLn");
+fn pRintLn() {
+    println!("pRintLn");
 }
-fn prinTln() {
-    println!("prinTln");
+fn prInTln() {
+    println!("prInTln");
 }
 fn priNtln() {
     println!("priNtln");
 }
-fn prIntln() {
-    println!("prIntln!");
-}
-fn pRintln() {
-    println!("pRintln");
-}
-fn Println() {
-    println!("Println");
-}
+
 fn main() {
     println();
-    printlN();
-    printLn();
-    prinTln();
+    PrintlN();
+    pRintLn();
+    prInTln();
     priNtln();
-    prIntln();
-    pRintln();
-    Println();
+    prInTln();
+    pRintLn();
+    PrintlN();
 }
 
+
 ```
-[Run in Rust Playground](https://play.rust-lang.org/?gist=d5688a5c9cf58205dd405e54628e012a&version=stable&mode=debug&edition=2015)
+[Run in Rust Playground](https://play.rust-lang.org/?gist=f0739dc8064b09d1358e05171118cea2&version=stable&mode=debug&edition=2015)
