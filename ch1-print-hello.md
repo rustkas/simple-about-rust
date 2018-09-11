@@ -20,4 +20,4 @@ fn main() {
 Достаточно перейти на страничку [play.rust-lang.org](https://play.rust-lang.org/),
 втавить в поле ввода код программы и нажать кнопку "Run". Результат работы программы 
 будет отображён в нижней части экрана. 
-
+[![play.rust-lang.org](img/play-view.png)](https://play.rust-lang.org/)
