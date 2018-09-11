@@ -260,15 +260,17 @@ O❤O да, думаю, то что надо.
 ```
 [Run in Rust Playground](https://play.rust-lang.org/?gist=10f6ca4e1d305d260ffc62907d2071c9&version=stable&mode=debug&edition=2015).
 
-Или такую:
+Или инфорграфику:
 ```rust
 fn main() {
  print!("
-
+\t Мы изучали печать на консоль \n
+------------------------
+Числа\tСтроки\tСимволы
  ⚙\t⚙\t⚙\n
- ⚙\tRust\t⚙\n
+ ⚙\tRust типы данных\t⚙\n
  ⚙\t⚙\t⚙\n
+ \tБулевы
  ");
-}
-```
-[Run in Rust Playground](https://play.rust-lang.org/?gist=8b412c197accc97d0166178ffd014b28&version=stable&mode=debug&edition=2015).
+}```
+[Run in Rust Playground](https://play.rust-lang.org/?gist=131852391d9b5ea6e52a4ab07bf0d28c&version=stable&mode=debug&edition=2015).
