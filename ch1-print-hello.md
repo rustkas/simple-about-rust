@@ -253,12 +253,12 @@ fn main() {
 
 (\\__(\\
 ('•֊ •')
-O❤O да, думаю, то что надо.
+  O❤O да, думаю, то что надо.
 
  ");
 }
 ```
-[Run in Rust Playground](https://play.rust-lang.org/?gist=10f6ca4e1d305d260ffc62907d2071c9&version=stable&mode=debug&edition=2015).
+[Run in Rust Playground](https://play.rust-lang.org/?gist=59ab7b3d1ef7afaa505a7b109f6d12ba&version=stable&mode=debug&edition=2015).
 
 Или инфографику:
 ```rust
