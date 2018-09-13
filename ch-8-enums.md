@@ -1628,4 +1628,119 @@ fn main() {
 Напишите своё решение сложзной задачи - опишите работающее решение сначала в виде констант, а потом напишите его с помощью 
 языковой конструкции `enum`.
 
+Попробуйте сконвертировать перечисление в какой-нибудь примитивный формат. Изучите сообщения компилятора.
+
+## Конструкция match
+
+Кострукция `match` отлично подходит для работы с перечислениями. Обратите внимание, что значение для сравнения не обрамляется
+скобками (также как и `if`, `while`). Далее следует блок. В нём перечисляются варианты за которыми следуюет `=>`. Далее следует 
+выражение. Обратите внимание, что последнее выражение не заключено в фигурные скобки. Так можно написать, так как макрос `println!` возвращает пустой картеж. По этому поводу напишем поясняющий пример кода:
+```rust
+fn main() {
+    #[allow(dead_code)]
+    #[derive(Debug)]
+    enum ABC {
+        A,
+        B,
+        C,
+    }
+    let value = println!("{:?}", ABC::A);
+    println!("{:?}", value);
+    match value {
+        () => if true {println!("ok");} 
+    }
+}
+
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=e77fce4468195408d554efc738d27873&version=stable&mode=debug&edition=2015)
+
+### Домашнее  задание 
+Попробуйте испльзовать перечисление в операторах сравнения `if`,  циклах `while`, `for`.
+
+```rust
+fn main() {
+    #[allow(dead_code)]
+    #[derive(Debug)]
+    enum ABC {
+        A,
+        B,
+        C,
+    }
+    //if  ABC::A == ABC::A {println!("true");}
+    //if  ABC::A > ABC::B {println!("true");} else {println!("false");}
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=29ad4a634d49cb45a4142790382b9167&version=stable&mode=debug&edition=2015)
+
+### match. Специальный символ `_` 
+В случае если необходимы выбрать все остальные вариатны ветвлений `match` - используйте специальный символ `_`. Это своеобразная "заглушка".
+```rust
+fn main() {
+    #[allow(dead_code)]
+    #[derive(Debug)]
+    enum ABC {
+        A,
+        B,
+        C,
+        D,
+    }
+    let value = ABC::C;
+    match value {
+        ABC::A => println!("A"),
+        ABC::B => println!("B"),
+        _ => println!("D"),
+    }
+}
+```
+[Rust Playground](https://play.rust-lang.org/?gist=cbd19745fac0552f95f9de843c796e7d&version=stable&mode=debug&edition=2015)
+
+### match и примитивные типы данных
+В конструкции `match` могут быть различные типы данных. В том числе примитивные типы данных. Проверим:
+
+```rust
+fn main() {
+    let value = 1;
+    match value {
+        0 => println!("A"),
+        1 => println!("B"),
+        _ => println!("D"),
+    }
+
+    let value = true;
+
+    #[allow(unreachable_patterns)]
+    match value {
+        true => println!("A"),
+        false => println!("B"),
+        _ => println!("D"),
+    }
+
+    let value = 'c';
+    match value {
+        't' => println!("A"),
+        'f' => println!("B"),
+        _ => println!("D"),
+    }
+
+// а вот и огнаничения. Нельзя использовать дробные числа в match
+    let value = 0.;
+    #[allow(illegal_floating_point_literal_pattern)]
+    match value {
+        1. => println!("A"),
+        0. => println!("floating B"),
+        _ => println!("floating D"),
+    }
+    
+    let value = "0.";
+    match value {
+        "1." => println!("A"),
+        "2." => println!("B"),
+        _ => println!("D"),
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=8cf6e1cae2da36df5bca9c394bf6c2cb&version=stable&mode=debug&edition=2015)
 
