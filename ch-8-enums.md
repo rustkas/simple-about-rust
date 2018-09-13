@@ -3,7 +3,7 @@
 ### Описание
 Продолжим наши исследования структур данных, которые нам предлагает использовать в своих программах стандартная библиотека Rust. 
 Рассмотрим `перечисление` - `enum`. Это структура весьма удобна, когда необходимо упорядочить и упростить работу с конечным списком
-константных значений. Например (возмём не игрушечный пример, а близкий к реальному, чтобы вы эмоционально почувствовали необходимость 
+константных значений. Например (возьмем не игрушечный пример, а близкий к реальному, чтобы вы эмоционально почувствовали необходимость 
 в enum):
 
 ```rust
@@ -1744,3 +1744,139 @@ fn main() {
 ```
 [Rust Playground](https://play.rust-lang.org/?gist=8cf6e1cae2da36df5bca9c394bf6c2cb&version=stable&mode=debug&edition=2015)
 
+## match и enum с входящими значениями
+
+`enum` могут быть достаточно сложны - каждый элемент может иметь свой набор входных данных, благодаря чему можно создавать более сложные и информативные аналитические структуры:
+```rust
+fn main() {
+    #[allow(dead_code)]
+    enum Country {
+        Russia(f64, char),
+        USA(u16, char),
+        China,
+    }
+
+    let country = Country::USA(1200, 'X');
+    match country {
+        Country::Russia(value, id) => print!("Result: {}. {}", value, id),
+        Country::USA(error_code, module) => print!("Error n. {} in module {}", error_code, module),
+        Country::China => {}
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=b89b7d44948a765510bd82af7dbeffed&version=stable&mode=debug&edition=2015)
+
+### Домашнее задание
+Напишите свою сложную `enum`. Научитесь пользоваться переменными элементов перечислений.
+
+### Неиспользование переменных
+Если по какой-либо причине в переменной перечисления нет необходимости, но код менять нельзя (по какой-то причине), то данную 
+переменную можно опустить с помощью специального символа `_`:
+
+```rust
+fn main() {
+    #[allow(dead_code)]
+    enum Country {
+        Russia(f64, char),
+        USA(u16, char),
+        China,
+    }
+    let country = Country::USA(1200, 'X');
+    {
+        match country {
+            Country::Russia(value, _) => println!("Result: {}", value),
+            Country::USA(_, _) => println!("Error."),
+            Country::China => {}
+        }
+    }
+    {
+        match country {
+            Country::Russia(value, id) => println!("Result: id = {}, {}", id, value),
+            Country::USA(error_code, module) => {
+                println!("Error n. {} in module {}", error_code, module)
+            }
+            Country::China => {}
+        }
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=a198d24ba730b4697930ba07dd057f95&version=stable&mode=debug&edition=2015)
+
+## Использование выражения match
+Так как `match`, как и `if` и другие языковые конструкция-выражения (т.е. те, которые возвращают результат своей работы, её
+можно использовать для вычисления значения (т.е. как анонимную функцию).
+
+Например:
+```rust
+fn main() {
+    #[allow(dead_code)]
+    enum CountrySize {
+        Big,
+        Small,
+        Little,
+    }
+    let direction = CountrySize::Small;
+    print!(
+        "{}",
+        match direction {
+            CountrySize::Big => 'B',
+            CountrySize::Small => 'S',
+            _ => '*',
+        }
+    );
+}
+```
+[Rust Playground](https://play.rust-lang.org/?gist=4b9ddb2a33e0690afae6731fbe4ffe58&version=stable&mode=debug&edition=2015)
+
+### Интеллектуальный match
+`match` может иметь более тонкую настройку, если требуется учесть  дополнительные обстоятельства. Например,
+
+```rust
+fn main() {
+    for n in -10..41 {
+        println!(
+            "{} is {}.",
+            n,
+            match n {
+                0 => "0",
+                1 => "one item",
+                _ if n < 0 => "negative item",
+                _ => "other",
+            }
+        );
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=5b0a6f01a9549c42e976dcaace5d8238&version=stable&mode=debug&edition=2015)
+
+В данном примере мы видим, что каждый элемент `match` может повторяться и проверять какие-либо ещё условия:
+```rust
+fn main() {
+    for m in 1..10 {
+        for n in -10..41 {
+            println!(
+                "{} is {}.",
+                n,
+                match n {
+                    0 if m == 2 => "0 two",
+                    0 if m == 6 => "0 six",
+                    0 => "0",
+                    1 if m == 3 => "one item three",
+                    1 if m == 5 => "one item five",
+                    1 => "one",
+                    _ if n < 0 => "negative item",
+                    _ => "other",
+                }
+            );
+        }
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=0c0d498773b1a8f6801b838e0e8de5e1&version=stable&mode=debug&edition=2015)
+
+#### Домашнее задание
+Напишите свой вариант использования `match`.
