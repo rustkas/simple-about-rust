@@ -85,5 +85,19 @@ fn main() {
 [Rust Playground](https://play.rust-lang.org/?gist=7105f06f17612d276bb4e175dc8f078b&version=stable&mode=debug&edition=2015)
 
 
+### Кортеж-Структура
+В том случаее если необходимо состав кортежа необходимо объявить заренее, тогда используют кортеж-стуктуру:
+
+```rust
+#[derive(Debug)]
+struct Data(u16, &'static str, char, [i32; 5]);
+fn main() {
+    let data = Data(405, "info", 'G', [4555, 2334343, 65565]);
+
+    print!("{:?}", data);
+}
+[Rust Playground](https://play.rust-lang.org/?gist=d72d3033f70d557fba32cc966cd3857e&version=stable&mode=debug&edition=2015)
+```
+[Rust Playground]()
 
 
