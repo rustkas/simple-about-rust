@@ -18,3 +18,4 @@
 - [Хранилища однотипных данных](ch-06-sequences-of-data.md)
 - [Использование простых типов данных в Rust](ch-07-primitive-types.md)
 - [Перечисления](ch-8-enums.md)
+- [Кортежи и структуры](ch-09-tupes_structs.md)
