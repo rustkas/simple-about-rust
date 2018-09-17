@@ -96,8 +96,10 @@ fn main() {
 
     println!("{:?}", data);
 }
-[Rust Playground](https://play.rust-lang.org/?gist=d72d3033f70d557fba32cc966cd3857e&version=stable&mode=debug&edition=2015)
+
 ```
-[Rust Playground]()
+
+[Rust Playground](https://play.rust-lang.org/?gist=d72d3033f70d557fba32cc966cd3857e&version=stable&mode=debug&edition=2015)
+
 
 
