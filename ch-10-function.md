@@ -137,6 +137,27 @@ fn main() {
 ```
 [Rust Playground](https://play.rust-lang.org/?gist=14e1dd199800765a535a6839429b0883&version=stable&mode=debug&edition=2015)
 
+```rust
+fn main() {
+    {
+        fn change_char(a: &mut char) {
+            *a = 'b'
+        }
+        let mut char_value = 'a';
+        change_char(&mut char_value);
+        println!("{}", char_value);
+    }
+    {
+        fn change_i8(a: &mut i8) {
+            *a = 5;
+        }
+        let mut value_i8 = 8;
+        change_i8(&mut value_i8);
+        println!("{}", value_i8);
+    }
+}
+```
+
 ### Возвращение значения функцией
 Кроме принятия входных данных функция может возвращать значения. Для описание выходного значения функции в Rust используется особый синтаксис.
 ```rust
@@ -182,7 +203,7 @@ fn main() {
 ```
 [Rust Playground](https://play.rust-lang.org/?gist=af44e20b33a2f72a3f0087dd294b437f&version=stable&mode=debug&edition=2015)
 
-### Возвращение нескольких значений одновременно из функции
+### Возвращение нескольких значений из функции одновременно
 
 Для целей возвращения нескольких значений разных типов из функции, весьма удобно использовать кортежи.
 
@@ -247,3 +268,53 @@ fn main() {
 Изучите тему работу со ссылочными переменными в функция более подробно. Напишите свои примеры их использования.
 Найдите ограничения в вашей системе по использованию вложенных ссылок `&&`. Экспериментальным путём выясните предельно уровень
 их вложенности.
+
+### Изменение ссылок на переменную
+В Rust очень важно как может изменяться переменная и кто может иметь ссылку на неё. Проблема ссылочной целостности - весьма важная и является источником явных и неявных проблемы. В Rust может быть так: или одна переменная изменяет другую и больше никакая переменная не может иметь доступ к ней, или есть множество переменных, которые могут читать значение этой переменной. Третьего не дано.
+
+Приведём пример:
+```rust
+fn main() {
+    let mut value1: char = 'a';
+    let mut value2: char = '1';
+    {
+        let mut link: &mut char = &mut value1;
+        println!("{} ", *link);
+        *link = 'f';
+        println!("{} ", *link);
+        link = &mut value2;
+        println!("{} ", *link);
+        *link = '6';
+        println!("{} ", *link);
+
+        // let mut link2: &mut char = &mut value1;
+        // println!(" {} ", *link2);
+        // *link2 = 'k';
+    }
+
+    {
+        let mut link: &mut char = &mut value1;
+        println!(" {} ", *link);
+        *link = 'k';
+        println!(" {} ", *link);
+        link = &mut value2;
+        println!(" {} ", *link);
+        *link = '5';
+        println!(" {} ", *link);
+    }
+    {
+        let link1: &char = &value1;
+        let link2: &char = &value1;
+        println!(" {} ", *link1);
+        println!(" {} ", *link2);
+
+        //  let mut link3: &mut char = &mut value1;
+        //  println!(" {} ", *link3);
+    }
+}
+
+```
+[Rust Playground]( https://play.rust-lang.org/?gist=6e77747bce219ecef2550fbade7e62bc&version=stable&mode=debug&edition=2015)
+
+#### Домашнее задание
+Придумайте свои примеры с использованием изменений значений ссылочных переменных.
