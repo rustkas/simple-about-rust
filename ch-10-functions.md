@@ -117,9 +117,69 @@ fn main() {
 }
 
 ```
-[Rust Playground]()
+[Rust Playground](https://play.rust-lang.org/?gist=76985aacb79c77bcbcb4ce2d5fb834bc&version=stable&mode=debug&edition=2015)
 
 Обратите внимание, что переменная может изменяться только при наличии маркера `mut`. Пожалуйста, проверьте это утверждение на 
 практике, закомментировав `mut`.
 
 Такое поведение аргументов функции называется `передача аргументов по значению`. Чтобы передать аргументов по ссылке и не копировать его содержимое - используйте ссылки в описании аргументов функции.
+```rust
+fn multiply_2(value: &mut f32) {
+    *value *= 2.;
+    println!("{}", value);
+}
+fn main() {
+    let mut value = 4.;
+    multiply_2(&mut value);
+    println!("{}", value);
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=14e1dd199800765a535a6839429b0883&version=stable&mode=debug&edition=2015)
+
+### Возвращение значения функцией
+Кроме принятия входных данных функция может возвращать значения. Для описание выходного значения функции в Rust используется особый синтаксис.
+```rust
+fn multiply_2(value: f32) -> f32 {
+    value * 2.
+}
+fn main() {
+    let value = 4.;
+    let resutl = multiply_2(value);
+    println!("{}", resutl);
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=cc855b367bed4b393a06499b021929ae&version=stable&mode=debug&edition=2015)
+
+По умолчанию возвращаемое значение функции является `пустым кортежем` `()`. Проверим.
+```rust
+fn function1() {}
+fn function2() -> () {}
+fn main() {
+    println!("{}", function1() == function2());
+    println!("{:?}; {:?}", function1(), function2());
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=283f255bc213870e6bf913332e2d8d05&version=stable&mode=debug&edition=2015)
+
+Обратите внимание, что возвращение значения из функции подомбно возвращению значения из выражения языковых конструкций изученых ранее. И именно такой стиль программирования приветствуется в Rust. Для раннего выхода из функции помимо стандартного решения, 
+в функции может использоваться ключевое слово `return`. Благодаря ему из функции может быть возвращено выходное значение в любом
+месте функции.
+```rust
+fn function(x: f32) -> f64 {
+    if x + 1. <= 0. {
+        return 0. as f64;
+    }
+    (x + 3.) as f64
+}
+
+fn main() {
+    print!("{} {}", function(18.), function(-3.));
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?gist=af44e20b33a2f72a3f0087dd294b437f&version=stable&mode=debug&edition=2015)
+
+
