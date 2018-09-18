@@ -21,7 +21,7 @@ fn print(
     resut_u32: &u32,
     resut_u64: &u64,
     resut_bool: &bool,
-    resut_char: &char,
+    resut_char: &char
 ) {
     print!(
         " {} {} {} {}  {} {} {} {}  {}  {}  ",
@@ -62,7 +62,7 @@ fn main() {
         &resut_u32,
         &resut_u64,
         &resut_bool,
-        &resut_char,
+        &resut_char
     );
     ///////////////////////////////////////////////
     resut_i8 = function::<i8>('b', -1, -2);
@@ -89,7 +89,7 @@ fn main() {
         &resut_u32,
         &resut_u64,
         &resut_bool,
-        &resut_char,
+        &resut_char
     );
 }
 
@@ -100,4 +100,52 @@ fn main() {
 Параметр <T> в шаблоне функции описывает то, что в методе будет использоваться какой-то тип данных (в момент написания функции неизвестный)
 Во время компиляции программы, если данная функция используется, она используется с конкретными данными определённого типа. Засчёт этого происходит ускорение как написания кода, 
 так и работы программы. 
+    
+ ### Домашнее задание
+ Проверьте, есть ли какие-либо ограничения для параметров функции (по количеству или ещё какие-либо).
+ 
+ ## Использование обощенных данных при определении структур, структур-кортежей, кортежей
+ Также как и в функциях обобщенные типы данных могут использоваться в структурах, структурах-кортежах, кортежах.
+ ```rust
+#[derive(Debug)]
+struct Structura<Type1, Type2> {
+    value_char: char,
+    type1_item1: Type1,
+    type1_item2: Type1,
+    type2_item1: Type2,
+}
+
+#[derive(Debug)]
+struct StructuraEnum<Type1, Type2>(char, Type1, Type1, Type2);
+
+#[derive(Debug)]
+enum Enum<Type1, Type2> {
+    Item1(Type1, Type2),
+    Item2(Type1, Type2),
+    Item3(Type1, Type2),
+}
+
+fn main() {
+    let structura = Structura {
+        value_char: 'a',
+        type1_item1: 34,
+        type1_item2: 782,
+        type2_item1: 0.02,
+    };
+    println!("{:?}", structura);
+
+    let structura_enum = StructuraEnum('j', 4, 555, 4.049);
+    println!("{:?}", structura_enum);
+    let enum_item1:Enum<i8,i8>= Enum::Item1(1, 1);
+    let enum_item2:Enum<i8,i8> = Enum::Item2(1, 1);
+    let enum_item3:Enum<i8,i8> = Enum::Item3(1, 1);
+    println!("{:?};{:?};{:?};", enum_item1, enum_item2, enum_item3);
+}
+
+ ```
+ [Rust Playground](https://play.rust-lang.org/?gist=e0bb152ea2bd3296ddb7e4d802461fcf&version=stable&mode=debug&edition=2015)
+ 
+ 
+ 
+ 
 
