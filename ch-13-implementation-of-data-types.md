@@ -129,5 +129,23 @@ fn main() {
 ```
 [Rust Playground](https://play.rust-lang.org/?gist=d1425abf4934f24d6ba109744b668009&version=stable&mode=debug&edition=2015)
 
-
-
+### Реализация Vec
+У вектора есть длина и ёмкость. Понять как ёмкость вычисляется поможет пример.
+```rust
+fn main() {
+    let mut v = vec![0; 0];
+    use std::u64::MAX;
+    
+    let mut prev_capacity:u64 = MAX;
+    
+    for i in 0..MAX {
+        let cap = v.capacity() as u64;
+        if cap != prev_capacity {
+            println!("{} {} {}", i, v.len(), cap);
+            prev_capacity = cap;
+        }
+        v.push(1);
+    }
+}
+```
+[Rust Playground](https://play.rust-lang.org/?gist=45607fe6eaf1a5a839919f502c845916&version=stable&mode=debug&edition=2015)
