@@ -36,7 +36,7 @@ fn main() {
 }
 ```
 
-### Пример анонимной функции
+### Примеры использования анонимной функции
 Вызов анонимной функции может выглядеть следующим образом:
 ```rust
 fn main() {
@@ -59,4 +59,51 @@ fn main() {
     print!("{:?}", arr);
 }
 
+```
+Или так:
+```rust
+fn main() {
+    
+    let multiply = |a| a * 6;
+    
+    print!("{}", multiply(14));
+    
+    let multiply_ref: &(Fn(i8) -> i8) = &multiply;
+    print!(
+        " {} {}",
+        (*multiply_ref)(14),
+        multiply_ref(14)
+        );
+}
+```
+[Rust Playground](https://play.rust-lang.org/?gist=8003830639c6deca1a25b4a473bd4630&version=stable&mode=debug&edition=2015)
+
+Обратите внимание на выражение инициализации ссылки на объявление функции. Очень интересно! `&(Fn(i8) -> i8)`.
+
+#### Домашнее задание
+Пожалуйста, напишите объявление переменных различных функций и присвойте им значения.
+
+Ещё примеры работы с анонимными функциями:
+```rust
+fn main() {
+    {
+        let anonimus = || -> () { println!("-----") };
+        let ref_item: &(Fn() -> ()) = &anonimus;
+        println!("{:?}", ref_item());
+        anonimus();
+        ref_item();
+    }
+    {
+        fn main(){println!("main")}
+        let main1 = || -> () {  };
+        
+        let anonimus:&(Fn()->()) = &main1;
+        println!("{}", std::mem::size_of_val(&anonimus));
+        main1();
+        anonimus();
+        let anonimus:&(Fn()->()) = &main;
+        main();
+        anonimus();
+    }
+}
 ```
