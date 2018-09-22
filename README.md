@@ -24,3 +24,4 @@
 - [Использование различных мест хранения переменных](ch-12-memory-allocation.md)
 - [Реализация типов данных в Rust](ch-13-implementation-of-data-types.md)
 - [Анонимные функции](ch-14-anonimus-functions.md)
+- [Строка](ch-15-string.md)
