@@ -77,3 +77,20 @@ fn main() {
     
 }
 ```
+
+Для внесения изменений при итерациях есть метод `iter_mut`:
+```rust
+fn main() {
+    let mut_slice = &mut [13, 54, 75];
+    println!("{:?}", mut_slice);
+    {
+        let mut_iterator: std::slice::IterMut<i32> = mut_slice.iter_mut();
+
+        for ref_item in mut_iterator {
+            *ref_item *= 10;
+        }
+    }
+    println!("{:?}", mut_slice);
+}
+```
+
