@@ -27,3 +27,4 @@
 - [Строка](ch-15-string.md)
 - [Диапазон](ch-16-range.md)
 - [Срез](ch-17-slice.md)
+- [Итератор](ch-18-iterator.md)
