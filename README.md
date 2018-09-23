@@ -25,3 +25,5 @@
 - [Реализация типов данных в Rust](ch-13-implementation-of-data-types.md)
 - [Анонимные функции](ch-14-anonimus-functions.md)
 - [Строка](ch-15-string.md)
+- [Диапазон](ch-16-range.md)
+- [Срез](ch-17-slice.md)
