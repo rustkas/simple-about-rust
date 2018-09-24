@@ -81,16 +81,47 @@ fn main() {
 Для внесения изменений при итерациях есть метод `iter_mut`:
 ```rust
 fn main() {
-    let mut_slice = &mut [13, 54, 75];
+    let mut_slice = &mut ['a', 'a', 'a'];
     println!("{:?}", mut_slice);
     {
-        let mut_iterator: std::slice::IterMut<i32> = mut_slice.iter_mut();
+        let mut_iterator: std::slice::IterMut<char> = mut_slice.iter_mut();
 
         for ref_item in mut_iterator {
-            *ref_item *= 10;
+            *ref_item  = (((*ref_item) as u32) as u8) as char;
+            
         }
     }
     println!("{:?}", mut_slice);
 }
+
 ```
+### Вспомогательные функции стандартной библиотеки для работы с итераторами
+####`filter`
+Для получения среза данных удовлетворяющих определённому условию весьма удобно использовать `filter`:
+
+```rust
+fn main() {
+    {
+        let array = [-86, -98, -0, -1, 0, 31];
+        for item in array.iter() {
+            if *item < 0 {
+                print!("{} ", item);
+            }
+        }
+        println!();
+    }
+    {
+        
+            let array = [-86, -98, -0, -1, 0, 31];
+            for item in array.iter().filter(|x| **x < 0) {
+                print!("{} ", item);
+            }
+       
+    }
+}
+
+```
+Обратити внимание, что аргуметов функции `filter` является анонимная функция. Такой способ использования анонимных функций 
+поведение множеству весьма распространёт в стандартной библиотеке. 
+В данном примере в анонимной функции используется два символа `*` (сначала получаем доступ к последовательности, потом к значению).
 
