@@ -1,0 +1,49 @@
+## Типаж
+*Типажём* называют контейнер, в котором находятся описания функций. Эти функции могут быть реализованы для любых типов данных. 
+Эта реализация должна быть соответствующим образом описана.
+
+Пример:
+```rust
+trait MakesSquareRoot {
+    fn sq_root(self) -> Self;
+}
+impl MakesSquareRoot for f32 {
+    fn sq_root(self) -> Self {
+        f32::sqrt(self)
+    }
+}
+impl MakesSquareRoot for f64 {
+    fn sq_root(self) -> Self {
+        f64::sqrt(self)
+    }
+}
+fn quartic_root<Number>(x: Number) -> Number
+where
+    Number: MakesSquareRoot,
+{
+    x.sq_root().sq_root()
+}
+
+fn main() {
+    print!("{} {} {}", quartic_root(1000f64), quartic_root(1000f32));
+}
+
+```
+Обратите внимание, на синтаксис описания функции `quartic_root`.В ней есть описание параметров и ограничений. В частности тут указано,
+что тип `Number` должен обязательно реализовать типаж HasSquareRoot.
+
+### Домашнее задание
+Попробуйте видоизменить пример и внесите в него ошибки, доказывающее вышеизложенное. Постарайтесь преодолеть ограничения входных данных
+и добавьте реализации типажа для известных вам типов данных.
+
+Например:
+```rust
+impl HasSquareRoot for i32 {
+    fn sq_root(self) -> Self {
+       (self as f64).sqrt() as i32
+    }
+}
+```
+
+
+
