@@ -28,3 +28,4 @@
 - [Диапазон](ch-16-range.md)
 - [Срез](ch-17-slice.md)
 - [Итератор](ch-18-iterator.md)
+- [Типаж](ch-19-trait.md)
