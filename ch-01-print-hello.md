@@ -259,7 +259,13 @@ fn main() {
 }
 ```
 [Run in Rust Playground](https://play.rust-lang.org/?gist=59ab7b3d1ef7afaa505a7b109f6d12ba&version=stable&mode=debug&edition=2015).
-
+Или такую:
+```
+    _~^~^~_
+\) /  o o  \ (/
+  '_   ¬   _'
+  \ '-----' /
+```
 Или инфографику:
 ```rust
 fn main() {
