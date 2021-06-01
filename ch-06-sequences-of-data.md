@@ -31,6 +31,7 @@ fn main() {
     let array5 = ["true", "true", "true", "false"];
     print!("{}, {}, {}, {}, {}", array1.len(), array2.len(), array3.len(), array4.len(), array5.len());
 }
+```
 
 ### Инициализация массива
 В Rust инициализировать массив можно разными способами:
