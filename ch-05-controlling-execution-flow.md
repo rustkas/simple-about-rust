@@ -110,22 +110,44 @@ fn main() {
 
 ### Прерывание цикла. break. continue.
 
-Для прекращения работы цикла используется ключевое слово `break`. Для перехода на новую итерацию цикла до завершения работы всего блока кода цикла используется `continue`. Пример:
+Для прекращения работы цикла используется ключевое слово `break`. Для перехода на новую итерацию цикла до завершения работы всего блока кода цикла используется `continue`. 
+
+#### break
+
+Пример:
 ```rust
 fn main() {
     let mut j = 0;
-    while j <= 256 {
-        print!("{} ", j * j);
+    while j < 256 {
+        let k = j * j;
         j += 1;
-        if j == 200 {
+        print!("{} ", k);
+        if k >= 40000 {
             break;
-        } else if j == 255 {
-            continue;
         }
     }
 }
+
 ```
-[Rust Playground](https://play.rust-lang.org/?gist=4a1f35b1c4ea10490278f6920a2abe2a&version=stable&mode=debug&edition=2015)
+[Rust Playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2015&gist=d0ae451b9d1672a9951291eca2042f70)
+
+#### continue
+
+Пример:
+```rust
+fn main() {
+    let mut j = 0; 
+    while j <= 256 { 
+        j += 1; 
+        if j % 2 == 0 { 
+            continue; 
+        } 
+        print!("{} ", j * j); 
+    }
+}
+
+```
+[Rust Playground](https://play.rust-lang.org/?version=stable&mode=debug&edition=2015&gist=ff959e8dbb4ddffd7f583319d415703b)
 
 ## Бесконечный цикл loop
 
